@@ -76,9 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 player.seekTo(0);
             }
             player.play();
-
-            handler.removeCallbacks(actualizarBarra);
-            handler.post(actualizarBarra);
         });
         btnPausa.setOnClickListener(v -> player.pause());
 
@@ -100,6 +97,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        handler.post(actualizarBarra);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        player.pause();
+        handler.removeCallbacks(actualizarBarra);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(actualizarBarra);
+        player.release();
+    }
 
     private String formatear(long milisegundos) {
         int segundosTotales = (int) (milisegundos / 1000);
