@@ -33,9 +33,11 @@ android {
 
 dependencies {
     implementation(libs.activity.ktx)
+    implementation(libs.androidx.media3.common)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
     implementation(libs.material)
+    implementation(libs.media3.exoplayer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
